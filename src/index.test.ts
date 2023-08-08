@@ -1,7 +1,7 @@
 import { CheckoutAPI } from "./index";
 
 describe("index.ts", () => {
-	test("Should return appropirate networkCode response", () => {
+	test("CheckoutAPI is defined", () => {
 		expect(typeof CheckoutAPI).toBe("function");
 	});
 });
