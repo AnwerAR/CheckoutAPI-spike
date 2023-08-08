@@ -63,10 +63,5 @@
 		"build",
 		"dist",
 		"LICENSE"
-	],
-	"dependencies": {
-		"@preact/signals-core": "^1.4.0",
-		"@reduxjs/toolkit": "^1.9.5",
-		"redux": "^4.2.1"
-	}
+	]
 }
