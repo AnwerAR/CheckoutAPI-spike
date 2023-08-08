@@ -81,15 +81,14 @@ typings/
 # Nuxt.js build / generate output
 .nuxt
 build
-
+.DS_Store
+exp-monorepo_backend
+out
 # Gatsby files
 .cache/
 # Comment in the public line in if your project uses Gatsby and *not* Next.js
 # https://nextjs.org/blog/next-9-1#public-directory-support
 # public
-
-# vuepress build output
-.vuepress/dist
 
 # Serverless directories
 .serverless/
@@ -103,5 +102,14 @@ build
 # TernJS port file
 .tern-port
 
-dist
-dist/
+src
+.editorconfig
+.eslintignore
+.eslintrc.cjs
+.prettierignore
+.prettierrc.cjs
+babel.config.cjs
+jest.config.mjs
+rollup.config.js
+build
+!dist

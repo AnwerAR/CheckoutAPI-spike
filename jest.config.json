@@ -1,0 +1,7 @@
+{
+	"clearMocks": true,
+	"coverageDirectory": "coverage",
+	"coverageProvider": "babel",
+	"moduleFileExtensions": ["js", "mjs", "cjs", "ts", "json"],
+	"testMatch": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[tj]s?(x)"]
+}

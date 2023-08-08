@@ -1,0 +1,72 @@
+{
+	"name": "checkout-api-spike",
+	"version": "0.0.0",
+	"description": "Checkout API",
+	"scripts": {
+		"start": "rollup -c -w --environment NODE_ENV:development",
+		"serve": "npx serve -p 9001",
+		"dev": "concurrently \"npm run start\" \"npm run serve\"",
+		"clean": "rimraf ./build",
+		"compile": "tsc -p ./tsconfig.cjs.json && tsc -p ./tsconfig.esm.json",
+		"build:umd": "rollup -c",
+		"build": "npm run clean && npm run build:umd && npm run compile",
+		"test": "jest",
+		"lint": "eslint .",
+		"coverage": "npm run test -- --coverage --watchAll=false --collectCoverageFrom=./src/**/*.ts"
+	},
+	"private": false,
+	"author": "Anwer AR",
+	"license": "NONE",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/AnwerAR/CheckoutAPI-spike"
+	},
+	"bugs": {
+		"url": "https://github.com/AnwerAR/CheckoutAPI-spike/issues"
+	},
+	"homepage": "https://github.com/AnwerAR/CheckoutAPI-spike#readme",
+	"main": "./dist/cjs/index.js",
+	"types": "./dist/types/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/esm/index.js",
+			"require": "./dist/cjs/index.js"
+		}
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.19.3",
+		"@babel/core": "^7.20.2",
+		"@babel/preset-env": "^7.20.2",
+		"@babel/preset-typescript": "^7.18.6",
+		"@rollup/plugin-babel": "^6.0.2",
+		"@rollup/plugin-commonjs": "^23.0.2",
+		"@rollup/plugin-json": "^5.0.1",
+		"@rollup/plugin-node-resolve": "^15.0.1",
+		"@rollup/plugin-typescript": "^9.0.2",
+		"@types/jest": "^29.2.3",
+		"@typescript-eslint/eslint-plugin": "^5.44.0",
+		"@typescript-eslint/parser": "^5.44.0",
+		"concurrently": "^7.6.0",
+		"eslint": "^8.28.0",
+		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"jest": "^29.3.1",
+		"prettier": "2.7.1",
+		"rollup": "^2.79.1",
+		"rollup-plugin-livereload": "^2.0.5",
+		"rollup-plugin-terser": "^7.0.2",
+		"typescript": "^4.9.3"
+	},
+	"files": [
+		"build",
+		"dist",
+		"LICENSE"
+	],
+	"dependencies": {
+		"@preact/signals-core": "^1.4.0",
+		"@reduxjs/toolkit": "^1.9.5",
+		"redux": "^4.2.1"
+	}
+}
