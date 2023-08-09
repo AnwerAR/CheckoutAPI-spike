@@ -24,4 +24,5 @@ export interface DropInComponentInstance {
 	mount(node: HTMLElement | string): DropInComponentInstance;
 	unmount(): DropInComponentInstance;
 	update(updatedOptions: CheckoutConfiguration | undefined): void;
+	reload(): void;
 }

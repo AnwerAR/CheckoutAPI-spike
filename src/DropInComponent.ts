@@ -26,7 +26,9 @@ export default function DropInComponent(name: string, options: CheckoutConfigura
 		logger.log("Scripts loaded and element is created");
 	};
 
-	// Init
+	/**
+	 * Initialise drop-in-component
+	 */
 	initialise();
 
 	return {

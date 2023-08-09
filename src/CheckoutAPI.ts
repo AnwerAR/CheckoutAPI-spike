@@ -85,12 +85,11 @@ export default function CheckoutAPI(options?: CheckoutConfiguration) {
 			store.options = {} as CheckoutConfiguration;
 		},
 		reload() {
-			if (store.options) {
+			// TODO: reload list data from OPG.
+			if (elements && Object.keys(elements).length > 0) {
 				Object.keys(elements).forEach((el) => {
-					elements[el].update(store.options);
+					elements[el].reload();
 				});
-			} else {
-				throw new Error("Invalid configurations!");
 			}
 		},
 	};
