@@ -51,6 +51,7 @@ export default function CheckoutAPI(options?: CheckoutConfiguration) {
 
 	// Initialise.
 	if (options) {
+		logger.log("Checkout Instance: Initialising...");
 		initialise(options);
 	}
 
@@ -64,6 +65,8 @@ export default function CheckoutAPI(options?: CheckoutConfiguration) {
 				throw new Error("Invalid component");
 			}
 
+			logger.log(`${DROP_IN_COMPONENTS[component]}: Initialising...`);
+
 			// Invalid or no configuration
 			if (!store.options) throw new Error("No config!");
 
@@ -76,6 +79,8 @@ export default function CheckoutAPI(options?: CheckoutConfiguration) {
 		update(opt: CheckoutConfiguration) {
 			if (!opt || typeof opt !== "object") throw new Error("Invalid configuration!");
 
+			logger.log("Checkout Instance: Updating...");
+
 			const updatedStore = initialise({ ...store.options, ...opt });
 
 			if (updatedStore.options) {
@@ -83,10 +88,10 @@ export default function CheckoutAPI(options?: CheckoutConfiguration) {
 					elements[sere].update(updatedStore.options);
 				});
 			}
-
-			logger.log("List id updated", updatedStore);
 		},
 		destroy() {
+			logger.log("Checkout Instance: Destroying...");
+
 			// Unmount all registered drop-in-components
 			Object.keys(elements).forEach((el) => {
 				elements[el].unmount();
@@ -94,8 +99,10 @@ export default function CheckoutAPI(options?: CheckoutConfiguration) {
 
 			// Clear store data
 			store.options = {} as CheckoutConfiguration;
+			logger.log("Checkout Instance: Destroyed...");
 		},
 		reload() {
+			logger.log("Checkout Instance: Reloading...");
 			// TODO: reload list data from OPG.
 			if (elements && Object.keys(elements).length > 0) {
 				Object.keys(elements).forEach((el) => {
