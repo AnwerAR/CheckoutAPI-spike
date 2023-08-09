@@ -43,5 +43,8 @@ export default function DropInComponent(name: string, options: CheckoutConfigura
 		update(opt: CheckoutConfiguration | undefined): void {
 			if (opt) updateOptions(opt);
 		},
+		reload() {
+			initialise();
+		},
 	};
 }

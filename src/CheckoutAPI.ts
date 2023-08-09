@@ -77,12 +77,21 @@ export default function CheckoutAPI(options?: CheckoutConfiguration) {
 		},
 		destroy() {
 			// Unmount all registered drop-in-components
-			Object.keys(elements).forEach((sere) => {
-				elements[sere].unmount();
+			Object.keys(elements).forEach((el) => {
+				elements[el].unmount();
 			});
 
 			// Clear store data
 			store.options = {} as CheckoutConfiguration;
+		},
+		reload() {
+			if (store.options) {
+				Object.keys(elements).forEach((el) => {
+					elements[el].update(store.options);
+				});
+			} else {
+				throw new Error("Invalid configurations!");
+			}
 		},
 	};
 }
