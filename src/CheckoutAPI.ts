@@ -1,4 +1,4 @@
-import { CheckoutConfiguration, DropInComponentInstance, Env } from "types";
+import { CheckoutConfiguration, DropInComponentConfig, DropInComponentInstance, Env } from "types";
 import DropInComponent from "DropInComponent";
 import { logger, prepareEnv } from "helpers";
 
@@ -36,7 +36,11 @@ export default function CheckoutAPI(options?: CheckoutConfiguration) {
 		return store;
 	}
 
-	function handleDropIn(component: string, opts: CheckoutConfiguration, env: Env) {
+	function handleDropIn(
+		component: string,
+		opts: CheckoutConfiguration & Partial<DropInComponentConfig>,
+		env: Env,
+	) {
 		elements[component] = DropInComponent(
 			component,
 			opts,
@@ -51,7 +55,10 @@ export default function CheckoutAPI(options?: CheckoutConfiguration) {
 	}
 
 	return {
-		dropIn(component: keyof typeof DROP_IN_COMPONENTS) {
+		dropIn(
+			component: keyof typeof DROP_IN_COMPONENTS,
+			componentOptions: DropInComponentConfig,
+		) {
 			// Invalid component
 			if (!(component in DROP_IN_COMPONENTS)) {
 				throw new Error("Invalid component");
@@ -60,7 +67,11 @@ export default function CheckoutAPI(options?: CheckoutConfiguration) {
 			// Invalid or no configuration
 			if (!store.options) throw new Error("No config!");
 
-			return handleDropIn(DROP_IN_COMPONENTS[component], store.options, store.environment);
+			return handleDropIn(
+				DROP_IN_COMPONENTS[component],
+				{ ...store.options, ...componentOptions },
+				store.environment,
+			);
 		},
 		update(opt: CheckoutConfiguration) {
 			if (!opt || typeof opt !== "object") throw new Error("Invalid configuration!");
@@ -91,6 +102,11 @@ export default function CheckoutAPI(options?: CheckoutConfiguration) {
 					elements[el].reload();
 				});
 			}
+		},
+		updateListId(listId: string) {
+			if (!listId) throw new Error("List id is required");
+			if (typeof listId !== "string") throw new Error("Invalid list id");
+			this.update({ ...store.options, listId } as CheckoutConfiguration);
 		},
 	};
 }

@@ -6,7 +6,9 @@ export type CheckoutConfiguration = {
 };
 
 export type DropInComponentConfig = {
-	name: string;
+	primaryColor: string;
+	primaryTextColor: string;
+	hidePayButton: boolean;
 };
 
 export interface Env {
@@ -15,14 +17,10 @@ export interface Env {
 	getEnvName(): string;
 }
 
-export type DropInComponentProps<T> = {
-	name: T;
-	options: CheckoutConfiguration;
-};
-
 export interface DropInComponentInstance {
 	mount(node: HTMLElement | string): DropInComponentInstance;
 	unmount(): DropInComponentInstance;
 	update(updatedOptions: CheckoutConfiguration | undefined): void;
 	reload(): void;
+	pay(): void;
 }

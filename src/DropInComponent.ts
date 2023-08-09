@@ -1,7 +1,11 @@
 import { loadScript, logger } from "helpers";
-import { CheckoutConfiguration, Env } from "types";
+import { CheckoutConfiguration, DropInComponentConfig, Env } from "types";
 
-export default function DropInComponent(name: string, options: CheckoutConfiguration, env: Env) {
+export default function DropInComponent(
+	name: string,
+	options: CheckoutConfiguration & Partial<DropInComponentConfig>,
+	env: Env,
+) {
 	let element: HTMLElement;
 	let parentNode: HTMLElement;
 
@@ -47,6 +51,10 @@ export default function DropInComponent(name: string, options: CheckoutConfigura
 		},
 		reload() {
 			initialise();
+		},
+		pay() {
+			// TODO: implement pay method.
+			// Check if pay button is hidden from given drop in component.
 		},
 	};
 }
