@@ -11,27 +11,38 @@ An experimental project
     const CheckoutAPI = require("@payoneer/checkout-api");
 
 ### Usage
-    // Configurations
     const config = {
 	    env: "test"
 	    listId: <LIST ID HERE>
 	};
 
-	// Initialise
     const checkout = PayoneerCheckout(config);
 
 #### Update
     checkout.update({ listId: <NEW LIST ID> });
+    checkout.updateListId(listId);
+
+  #### Available methods
+
+
+    dropIn(componentName, options);
+    update(options)
+    reload();
+    destroy();
+
+    // Helpers
+    availableNetworks();
+    neededDropInComponents();
 
 #### Drop In Component
-    const cards = checkout.dropIn("cards").mount(document.querySelector("#app");
+    const cards = checkout.dropIn("cards", options).mount(document.querySelector("#app"));
 
-#### Unmount Drop In
-    cards.unmount();
-#### Destroy Checkout instance
-
-    checkout.destroy();
-
+#### Available methods on components
+    mount(node);
+    unmount();
+    reload();
+    update(options);
+    pay();
 #### Browser
 
     <script src="path-to-checkout/checkout-api.js" type="text/javascript"></script>
