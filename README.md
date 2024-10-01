@@ -1,3 +1,6 @@
+# :warning: Deprecated and Decommissioned :warning:
+**This repository is no longer used by any merchant. At the moment we don't support checkoutAPI-spike flow for any checkout merchants. As a matter of fact, it was created as a spike repo.**
+
 # CheckoutAPI Spike
 An experimental project
 
